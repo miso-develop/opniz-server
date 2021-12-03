@@ -1,0 +1,41 @@
+{
+	"folders": [
+		{
+			"path": ".",
+		},
+	],
+	"settings": {
+		"workbench.colorCustomizations": {
+			"titleBar.activeBackground": "#38542d",
+			"activityBarBadge.background": "#38542d",
+			"statusBar.background": "#38542d",
+		},
+		"cSpell.words": [
+			"abortable",
+			"colorcode",
+			"drawpix",
+			"eqeqeq",
+			"esbuild",
+			"lcov",
+			"ledc",
+			"logc",
+			"notmatch",
+			"obniz",
+			"onbutton",
+			"ondata",
+			"onhandle",
+			"onmethod",
+			"onnotmatch",
+			"onrequest",
+			"onresponse",
+			"onrpc",
+			"onsuberror",
+			"opniz",
+			"outdir",
+			"pico",
+			"raspi",
+			"rpcs",
+			"stickc"
+		],
+	},
+}
