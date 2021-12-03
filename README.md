@@ -138,7 +138,7 @@ const OFF = "#000000"
 const GREEN = "#ff0000"
 let color = OFF
 
-; (async () => {
+const main = async () => {
 	try {
 		// opniz Serverを経由してopnizデバイスへ接続
 		while (!(await opniz.connect())) { console.log("connect...") }
@@ -152,7 +152,8 @@ let color = OFF
 	} catch (e) {
 		await main()
 	}
-})()
+}
+main()
 ```
 
 次にopnizデバイス（Arduino Library）のサンプルコードです。  
