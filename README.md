@@ -51,7 +51,7 @@ opniz Serverを経由して接続したopnizデバイスのヒープメモリサ
 
 const { Opniz } = require("opniz")
 
-const address = "172.0.0.1" // opniz Serverのアドレスを指定
+const address = "127.0.0.1" // opniz Serverのアドレスを指定
 const port = 3000           // opniz Serverのポート番号を指定
 const id = "1234-5678"      // opniz Serverを経由して接続したいopnizデバイスで指定したIDと同じ任意の文字列を指定
 const opniz = new Opniz.Esp32({ address, port, id }) // opnizインスタンス生成
