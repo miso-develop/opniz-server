@@ -102,7 +102,7 @@ void loop() {
 
 ### Herokuへデプロイ
 
-クラウド環境へのデプロイの一例としてHerokuへデプロイしてみます。  
+クラウド環境へのデプロイの一例として、Herokuへのデプロイコードは以下のようになります。  
 ポート番号を`process.env.PORT`と指定することがポイントです。  
 
 ```js
@@ -111,81 +111,6 @@ const { OpnizServer } = require("opniz-server")
 const port = process.env.PORT
 
 const server = new OpnizServer(port)
-```
-
-Herokuにデプロイした環境をおためし環境として公開しています。  
-`intense-hollows-77613.herokuapp.com`にアクセスすることで実際にお試しいただけます。  
-
-以下がおためし環境へ接続するNode.js SDKとArduino Libraryのサンプルコードです。  
-おためし環境を経由して接続するopnizデバイス（M5ATOM）のLEDを緑色に点滅します。  
-
-まずはNode.js SDKのサンプルコードです。  
-`id`の値を書き換えてご利用ください。  
-
-```js
-// Node.js SDK Client
-
-const { Opniz } = require("opniz")
-
-const address = "intense-hollows-77613.herokuapp.com" // Herokuの公開アプリドメイン
-const port = 80                                       // 80番ポートを指定
-const id = "1234-5678"                                // opniz Serverを経由して接続したいopnizデバイスで指定したIDと同じ任意の文字列を指定
-const opniz = new Opniz.M5Atom({ address, port, id }) // opnizインスタンス生成
-
-
-
-const OFF = "#000000"
-const GREEN = "#ff0000"
-let color = OFF
-
-const main = async () => {
-	try {
-		// opniz Serverを経由してopnizデバイスへ接続
-		while (!(await opniz.connect())) { console.log("connect...") }
-		
-		for (;;) {
-			color = color === OFF ? GREEN : OFF
-			await opniz.dis.drawpix(0, color) // opnizデバイス（M5ATOM）のLEDを緑色に点滅
-			console.log(color)
-			await opniz.sleep(500)
-		}
-	} catch (e) {
-		await main()
-	}
-}
-main()
-```
-
-次にopnizデバイス（Arduino Library）のサンプルコードです。  
-`id`の値はNode.js SDKのコードと同じ任意の値を指定してください。  
-
-```cpp
-// Arduino Library Client
-
-#include <OpnizM5Atom.h>
-#include <lib/WiFiConnector.h>
-
-const char* ssid = "<SSID>";         // Wi-FiのSSIDに書き換え
-const char* password = "<PASSWORD>"; // Wi-Fiのパスワードに書き換え
-WiFiConnector wifiConnector(ssid, password); // Wi-Fi接続ヘルパーインスタンス生成
-
-const char* address = "intense-hollows-77613.herokuapp.com"; // Herokuの公開アプリドメイン
-const uint16_t port = 80;                                    // 80番ポートを指定
-const String id = "1234-5678";                               // opniz Serverを経由して接続したいNode.js SDKで指定したIDと同じ任意の文字列を指定
-Opniz::M5Atom* opniz = new Opniz::M5Atom(address, port, id); // opnizインスタンス生成（テスト用Herokuサーバへ接続）
-
-
-
-void setup() {
-    initM5(); // M5ATOM初期化
-    wifiConnector.connect(); // Wi-Fi接続
-    opniz->connect();        // opniz Serverを経由してNode.js SDKへ接続
-}
-
-void loop() {
-    opniz->loop();         // opnizメインループ
-    wifiConnector.watch(); // Wi-Fi接続監視
-}
 ```
 
 
