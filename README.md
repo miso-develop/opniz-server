@@ -4,10 +4,12 @@
 
 > ❗ このプロジェクトは現在アルファ版です。
 
-opnizとはM5StackといったESP32デバイスをNode.jsからobnizライクに遠隔制御するための、**Node.js SDK**および**Arduinoライブラリ**です。  
-しくみとしてはESP32デバイスおよびNode.js SDK間にて**JSON形式のRPCメッセージ**をやりとりし、相互に定義されたメソッドを呼び合います。  
+opnizとはM5StackデバイスをNode.js（JavaScript / TypeScript）からobnizライクに実装できるオープンソースフレームワークです。  
+Node.js SDKおよびArduinoライブラリがあり、WebSocketで相互通信を行います。  
 
-![overview](https://user-images.githubusercontent.com/22117028/150321859-5dde911d-91da-41f4-abee-3ad696905529.png)
+しくみとしてはM5StackデバイスおよびNode.js SDK間にてJSON形式のRPCメッセージをやりとりし、相互に定義されたメソッドを呼び合います。  
+
+![overview](https://user-images.githubusercontent.com/22117028/274111780-1f1e22ec-66ac-4cd0-bee3-1a19ee2eb65c.png)
 
 opniz Serverはopniz Node.js SDKやopnizデバイスからのJSON RPCメッセージを中継するWebSocketサーバです。  
 opniz Serverを介すことでWebSocketクライアント同士の接続（opnizデバイス、ブラウザ、Node.js SDK等）を行えます。  
@@ -184,10 +186,8 @@ server.onresponse = async (payload, src, dist) => {
 
 * [opniz SDK for Node.js](https://github.com/miso-develop/opniz-sdk-nodejs)
 	* opnizデバイスをNode.jsから遠隔制御するためのSDK
-* [opniz Arduino Library for M5ATOM](https://github.com/miso-develop/opniz-arduino-m5atom)
-	* M5ATOM向けArduinoライブラリ
-* [opniz Arduino Library for ESP32](https://github.com/miso-develop/opniz-arduino-esp32)
-	* ESP32向けArduinoライブラリ
+* [opniz Arduino Library for M5Unified](https://github.com/miso-develop/opniz-arduino-m5unified)
+	* M5Unified向けArduinoライブラリ
 * [opniz CLI](https://github.com/miso-develop/opniz-cli)
 	* opniz Arduino LibraryのBasicスケッチをコマンドから簡単に書き込めるCLIツール
 
